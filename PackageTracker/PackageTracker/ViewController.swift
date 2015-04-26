@@ -8,18 +8,37 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource {
+    
+    var items = [String]()
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var trackingTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        items = ["a", "b", "c"]
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 
+    @IBAction func trackPackageTapped(sender: UIButton) {
+    }
+    
+    // MARK: UITableViewDataSource methods
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("PackageStatusLineCell") as! UITableViewCell
+        
+        cell.textLabel?.text = items[indexPath.row]
+        
+        return cell
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
+    }
 
 }
 
