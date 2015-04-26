@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		205AE8131AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
+		205AE8141AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D881AED687E00A7A73F /* AppDelegate.swift */; };
 		20DE6D8B1AED687E00A7A73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D8A1AED687E00A7A73F /* ViewController.swift */; };
 		20DE6D8E1AED687E00A7A73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DE6D8C1AED687E00A7A73F /* Main.storyboard */; };
@@ -26,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		205AE8121AED794D00289F3F /* SampleUSPSXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SampleUSPSXML.xml; sourceTree = "<group>"; };
 		20DE6D831AED687E00A7A73F /* PackageTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PackageTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE6D871AED687E00A7A73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20DE6D881AED687E00A7A73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		20DE6D861AED687E00A7A73F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				205AE8121AED794D00289F3F /* SampleUSPSXML.xml */,
 				20DE6D871AED687E00A7A73F /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -194,6 +198,7 @@
 			files = (
 				20DE6D8E1AED687E00A7A73F /* Main.storyboard in Resources */,
 				20DE6D931AED687E00A7A73F /* LaunchScreen.xib in Resources */,
+				205AE8131AED794D00289F3F /* SampleUSPSXML.xml in Resources */,
 				20DE6D901AED687E00A7A73F /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				205AE8141AED794D00289F3F /* SampleUSPSXML.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +419,7 @@
 				20DE6DA41AED687E00A7A73F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20DE6DA51AED687E00A7A73F /* Build configuration list for PBXNativeTarget "PackageTrackerTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +428,7 @@
 				20DE6DA71AED687E00A7A73F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
