@@ -20,6 +20,7 @@ class Summary: NSObject, NSXMLParserDelegate {
     var name = ""
     var authorizedAgent = ""
     var deliveryAttributeCode = ""
+    
 
     private var parsingContext : String? = nil
     

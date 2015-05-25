@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20182FF51B136410002824F4 /* USPSConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 20182FF41B136410002824F4 /* USPSConfig.json */; };
+		20182FF61B136410002824F4 /* USPSConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 20182FF41B136410002824F4 /* USPSConfig.json */; };
+		20182FF81B1364B4002824F4 /* USPSRequestFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20182FF71B1364B4002824F4 /* USPSRequestFlow.swift */; };
+		20182FFA1B1365F0002824F4 /* USPSRequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20182FF91B1365F0002824F4 /* USPSRequestInfo.swift */; };
+		20182FFB1B1365F0002824F4 /* USPSRequestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20182FF91B1365F0002824F4 /* USPSRequestInfo.swift */; };
 		205AE8131AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		205AE8141AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D881AED687E00A7A73F /* AppDelegate.swift */; };
@@ -35,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20182FF41B136410002824F4 /* USPSConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = USPSConfig.json; sourceTree = "<group>"; };
+		20182FF71B1364B4002824F4 /* USPSRequestFlow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USPSRequestFlow.swift; sourceTree = "<group>"; };
+		20182FF91B1365F0002824F4 /* USPSRequestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = USPSRequestInfo.swift; path = PackageTrackerTests/USPSRequestInfo.swift; sourceTree = SOURCE_ROOT; };
 		205AE8121AED794D00289F3F /* SampleUSPSXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SampleUSPSXML.xml; sourceTree = "<group>"; };
 		20DE6D831AED687E00A7A73F /* PackageTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PackageTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE6D871AED687E00A7A73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -92,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				55476F591AFFD2E200F9003C /* Model */,
+				20182FF91B1365F0002824F4 /* USPSRequestInfo.swift */,
 				20DE6D881AED687E00A7A73F /* AppDelegate.swift */,
 				20DE6D8A1AED687E00A7A73F /* ViewController.swift */,
 				20DE6D8C1AED687E00A7A73F /* Main.storyboard */,
@@ -107,6 +116,7 @@
 			children = (
 				205AE8121AED794D00289F3F /* SampleUSPSXML.xml */,
 				20DE6D871AED687E00A7A73F /* Info.plist */,
+				20182FF41B136410002824F4 /* USPSConfig.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -117,6 +127,7 @@
 				20DE6D9E1AED687E00A7A73F /* PackageTrackerTests.swift */,
 				20DE6D9C1AED687E00A7A73F /* Supporting Files */,
 				55476F661AFFED4B00F9003C /* TestInfo.swift */,
+				20182FF71B1364B4002824F4 /* USPSRequestFlow.swift */,
 			);
 			path = PackageTrackerTests;
 			sourceTree = "<group>";
@@ -223,6 +234,7 @@
 				20DE6D931AED687E00A7A73F /* LaunchScreen.xib in Resources */,
 				205AE8131AED794D00289F3F /* SampleUSPSXML.xml in Resources */,
 				20DE6D901AED687E00A7A73F /* Images.xcassets in Resources */,
+				20182FF51B136410002824F4 /* USPSConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +242,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20182FF61B136410002824F4 /* USPSConfig.json in Resources */,
 				205AE8141AED794D00289F3F /* SampleUSPSXML.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20182FFA1B1365F0002824F4 /* USPSRequestInfo.swift in Sources */,
 				55476F5E1AFFD57300F9003C /* Detail.swift in Sources */,
 				55476F5B1AFFD34C00F9003C /* Summary.swift in Sources */,
 				20DE6D8B1AED687E00A7A73F /* ViewController.swift in Sources */,
@@ -253,6 +267,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20182FFB1B1365F0002824F4 /* USPSRequestInfo.swift in Sources */,
+				20182FF81B1364B4002824F4 /* USPSRequestFlow.swift in Sources */,
 				55476F5C1AFFD34C00F9003C /* Summary.swift in Sources */,
 				55476F621AFFD5ED00F9003C /* Info.swift in Sources */,
 				20DE6D9F1AED687E00A7A73F /* PackageTrackerTests.swift in Sources */,
