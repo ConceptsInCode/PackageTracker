@@ -19,7 +19,7 @@ class USPSRequestFlow: XCTestCase {
         
         let uspsRequestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
     
-        let expectedXMLString = "<?xml version=\"1.0\" encoding=\"UTF‐8\" ?><TrackFieldRequest USERID=\"\(userID)\"><TrackID ID=\"\(packageID)\"></TrackID></TrackFieldRequest>"
+        let expectedXMLString = "ShippingAPI.dll?API=TrackV2&XML=%3C?xml%20version=%221.0%22%20encoding=%22UTF%E2%80%908%22%20?%3E%3CTrackFieldRequest%20USERID=%22conceptsincode%22%3E%3CTrackID%20ID=%2212345%22%3E%3C/TrackID%3E%3C/TrackFieldRequest%3E"
         
         // when
         let resultXMLString = uspsRequestInfo.serializedXML
@@ -46,11 +46,12 @@ class USPSRequestFlow: XCTestCase {
     func testFullUSPSURLCreation() {
         let userID = "conceptsincode"
         let packageID = "12345"
-        let expectedURLString = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=<?xml version=\"1.0\" encoding=\"UTF‐8\" ?><TrackFieldRequest USERID=\"\(userID)\"><TrackID ID=\"\(packageID)\"></TrackID></TrackFieldRequest>"
+        
+        let expectedURLString = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3C?xml%20version=%221.0%22%20encoding=%22UTF%E2%80%908%22%20?%3E%3CTrackFieldRequest%20USERID=%22conceptsincode%22%3E%3CTrackID%20ID=%2212345%22%3E%3C/TrackID%3E%3C/TrackFieldRequest%3E"
         
         let request = USPSRequestInfo(userID: userID, packageID: packageID)
         
-        XCTAssertEqual(request.requestURL, expectedURLString)
+        XCTAssertEqual(request.requestURL.absoluteString ?? "", expectedURLString)
     }
     
 
