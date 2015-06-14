@@ -16,6 +16,7 @@
 		204D48A31B21C62900E173AB /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204D48A11B21C62900E173AB /* Result.swift */; };
 		205AE8131AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		205AE8141AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
+		205EF4B81B2DF6CA0019FE77 /* USPSCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */; };
 		20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D881AED687E00A7A73F /* AppDelegate.swift */; };
 		20DE6D8B1AED687E00A7A73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D8A1AED687E00A7A73F /* ViewController.swift */; };
 		20DE6D8E1AED687E00A7A73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DE6D8C1AED687E00A7A73F /* Main.storyboard */; };
@@ -47,6 +48,7 @@
 		20182FF91B1365F0002824F4 /* USPSRequestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = USPSRequestInfo.swift; path = PackageTrackerTests/USPSRequestInfo.swift; sourceTree = SOURCE_ROOT; };
 		204D48A11B21C62900E173AB /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		205AE8121AED794D00289F3F /* SampleUSPSXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SampleUSPSXML.xml; sourceTree = "<group>"; };
+		205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USPSCommunicator.swift; sourceTree = "<group>"; };
 		20DE6D831AED687E00A7A73F /* PackageTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PackageTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE6D871AED687E00A7A73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20DE6D881AED687E00A7A73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		20DE6D851AED687E00A7A73F /* PackageTracker */ = {
 			isa = PBXGroup;
 			children = (
+				205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */,
 				55476F591AFFD2E200F9003C /* Model */,
 				20182FF91B1365F0002824F4 /* USPSRequestInfo.swift */,
 				20DE6D881AED687E00A7A73F /* AppDelegate.swift */,
@@ -198,7 +201,8 @@
 		20DE6D7B1AED687E00A7A73F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Concepts In Code";
 				TargetAttributes = {
 					20DE6D821AED687E00A7A73F = {
@@ -263,6 +267,7 @@
 				55476F5B1AFFD34C00F9003C /* Summary.swift in Sources */,
 				20DE6D8B1AED687E00A7A73F /* ViewController.swift in Sources */,
 				204D48A21B21C62900E173AB /* Result.swift in Sources */,
+				205EF4B81B2DF6CA0019FE77 /* USPSCommunicator.swift in Sources */,
 				55476F611AFFD5ED00F9003C /* Info.swift in Sources */,
 				20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */,
 			);
@@ -334,6 +339,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -403,6 +409,7 @@
 				INFOPLIST_FILE = PackageTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.conceptsincode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -414,6 +421,7 @@
 				INFOPLIST_FILE = PackageTracker/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.conceptsincode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -432,6 +440,7 @@
 				);
 				INFOPLIST_FILE = PackageTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.conceptsincode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PackageTracker.app/PackageTracker";
 			};
@@ -447,6 +456,7 @@
 				);
 				INFOPLIST_FILE = PackageTrackerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.conceptsincode.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PackageTracker.app/PackageTracker";
 			};

@@ -8,12 +8,7 @@
 
 import Foundation
 
-class Box<T> {
-    var value: T
-    init(_ value: T) { self.value = value }
-}
-
 enum Result<T> {
-    case Value(Box<T>)
-    case Error(NSError)
+    case Value(T)
+    case Error(ErrorType)
 }

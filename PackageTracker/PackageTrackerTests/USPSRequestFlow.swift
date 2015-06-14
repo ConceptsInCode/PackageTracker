@@ -19,7 +19,7 @@ class USPSRequestFlow: XCTestCase {
         
         let uspsRequestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
     
-        let expectedXMLString = "ShippingAPI.dll?API=TrackV2&XML=%3C?xml%20version=%221.0%22%20encoding=%22UTF%E2%80%908%22%20?%3E%3CTrackFieldRequest%20USERID=%22conceptsincode%22%3E%3CTrackID%20ID=%2212345%22%3E%3C/TrackID%3E%3C/TrackFieldRequest%3E"
+        let expectedXMLString = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3C?xml%20version=%221.0%22%20encoding=%22UTF%E2%80%908%22%20?%3E%3CTrackFieldRequest%20USERID=%22conceptsincode%22%3E%3CTrackID%20ID=%2212345%22%3E%3C/TrackID%3E%3C/TrackFieldRequest%3E"
         
         // when
         let resultXMLString = uspsRequestInfo.serializedXML
@@ -35,7 +35,7 @@ class USPSRequestFlow: XCTestCase {
         let xmlParser = NSXMLParser(data: data)
         let packageInfo = Info()
         xmlParser.delegate = packageInfo
-        let parsed = xmlParser.parse()
+        xmlParser.parse()
         
         XCTAssertEqual(packageInfo.id, "9400116901500000000000")
         XCTAssertEqual(packageInfo.summary.event, "Delivered, In/At Mailbox")
@@ -53,6 +53,31 @@ class USPSRequestFlow: XCTestCase {
         
         XCTAssertEqual(request.requestURL.absoluteString ?? "", expectedURLString)
     }
+    
+    /*
+    func testDataGetsReceived() {
+        let userID = "conceptsincode"
+        let packageID = "12345"
+        
+        let request = USPSRequestInfo(userID: userID, packageID: packageID)
+        
+        let url = request.requestURL
+        
+        let expectation = expectationWithDescription("testing response")
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithURL(url) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            expectation.fulfill()
+            XCTAssertNotNil(response)
+        }
+        
+        task?.resume()
+        
+        waitForExpectationsWithTimeout(8.0) { (error: NSError?) -> Void in
+            XCTAssertTrue(false)
+        }
+    }
+*/
     
 
 }

@@ -29,36 +29,21 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json")!
         let data = NSData(contentsOfFile: filePath)!
-        let json: AnyObject = NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments, error: nil)!
+        let json: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
         let userID = json["userID"] as! String
-        let packageID = trackingTextField.text
+        let packageID = trackingTextField.text ?? ""
         let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
-        let url = requestInfo.requestURL
-        
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithURL(url) { data, response, error in
-            if let httpResponse = response as? NSHTTPURLResponse {
-                switch httpResponse.statusCode {
-                case 200..<300:
-                    println("i'm ok")
-                    let info = self.parse(data)
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.updateUI(info)
-                    }
-                default:
-                    println("i'm not okaaaaaay")
-                }
-            }
+        USPSManager.fetchPackageResults(requestInfo) { (items: [String]) -> Void in
+            self.items = items
+            self.tableView.reloadData()
         }
-            
-        task.resume()
     }
     
     private func parse(data: NSData) -> Info {
         let xmlParser = NSXMLParser(data: data)
         let packageInfo = Info()
         xmlParser.delegate = packageInfo
-        let parsed = xmlParser.parse()
+        xmlParser.parse()
         
         return packageInfo
     }
@@ -71,7 +56,9 @@ class ViewController: UIViewController, UITableViewDataSource {
     // MARK: UITableViewDataSource methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("PackageStatusLineCell") as! UITableViewCell
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("PackageStatusLineCell") else {
+            return UITableViewCell()
+        }
         
         cell.textLabel?.text = items[indexPath.row]
         

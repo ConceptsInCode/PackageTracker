@@ -22,7 +22,7 @@ class Detail: NSObject, NSXMLParserDelegate {
 
     private var parsingContext : String? = nil
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI : String?, qualifiedName: String?, attributes attributeDict: [NSObject: AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI : String?, qualifiedName: String?, attributes attributeDict: [String: String]) {
         parsingContext = elementName
     }
     
@@ -30,22 +30,27 @@ class Detail: NSObject, NSXMLParserDelegate {
         parsingContext = nil
     }
     
-    func parser(parser: NSXMLParser, foundCharacters string: String?) {
-        if let context = parsingContext, foundString = string {
+    func parser(parser: NSXMLParser, foundCharacters: String) {
+        if let context = parsingContext {
             switch context {
-            case "EventTime": eventTime = foundString
-            case "EventDate": eventDate = foundString
-            case "Event": event = foundString
-            case "EventCity": eventCity = foundString
-            case "EventState": eventState = foundString
-            case "EventZipCode": eventZipCode = foundString
-            case "EventCountry": eventCountry = foundString
-            case "FirmName": firmName = foundString
-            case "Name": name = foundString
-            case "AuthorizedAgent": authorizedAgent = foundString
+            case "EventTime": eventTime = foundCharacters
+            case "EventDate": eventDate = foundCharacters
+            case "Event": event = foundCharacters
+            case "EventCity": eventCity = foundCharacters
+            case "EventState": eventState = foundCharacters
+            case "EventZipCode": eventZipCode = foundCharacters
+            case "EventCountry": eventCountry = foundCharacters
+            case "FirmName": firmName = foundCharacters
+            case "Name": name = foundCharacters
+            case "AuthorizedAgent": authorizedAgent = foundCharacters
             default: break
             }
         }
     }
+    
+    override var description: String {
+        return "\(eventDate), \(eventTime), \(event)"
+    }
 }
+
 
