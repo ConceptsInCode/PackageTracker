@@ -11,7 +11,9 @@ import Foundation
 struct USPSCommunicator {
     
     static func fetchPackageResults(requestInfo: USPSRequestInfo, completionHandler: ((data: NSData) -> Void)?) -> () {
-        let url = requestInfo.requestURL
+        guard let url = requestInfo.requestURL else {
+            return
+        }
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithURL(url) { data, response, error in
@@ -27,17 +29,17 @@ struct USPSCommunicator {
                     print("i'm not okaaaaaay")
                 }
             } else {
-                print("not HTTP response")
+                print("not HTTP response. \(error)")
             }
         }
         
-        task?.resume()
+        task!.resume()
     }
 }
 
 struct USPSManager {
     
-    static func fetchPackageResults(requestInfo: USPSRequestInfo, completionHandler: ([String] -> Void)?) {
+    static func fetchPackageResults(requestInfo: USPSRequestInfo, completionHandler: (([String]) -> Void)?) {
         
         USPSCommunicator.fetchPackageResults(requestInfo) { (data) -> Void in
             let xmlParser = NSXMLParser(data: data)

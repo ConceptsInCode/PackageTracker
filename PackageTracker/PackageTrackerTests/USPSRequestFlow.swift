@@ -50,34 +50,30 @@ class USPSRequestFlow: XCTestCase {
         let expectedURLString = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3C?xml%20version=%221.0%22%20encoding=%22UTF%E2%80%908%22%20?%3E%3CTrackFieldRequest%20USERID=%22conceptsincode%22%3E%3CTrackID%20ID=%2212345%22%3E%3C/TrackID%3E%3C/TrackFieldRequest%3E"
         
         let request = USPSRequestInfo(userID: userID, packageID: packageID)
+        guard let url = request.requestURL else {
+            XCTFail("url should not be nil")
+            return
+        }
         
-        XCTAssertEqual(request.requestURL.absoluteString ?? "", expectedURLString)
+        XCTAssertEqual(url.absoluteString ?? "", expectedURLString)
     }
     
-    /*
     func testDataGetsReceived() {
         let userID = "conceptsincode"
         let packageID = "12345"
         
         let request = USPSRequestInfo(userID: userID, packageID: packageID)
+        let expectation = expectationWithDescription("testing getting data")
         
-        let url = request.requestURL
-        
-        let expectation = expectationWithDescription("testing response")
-        
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithURL(url) { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        USPSManager.fetchPackageResults(request) { (items: [String]) -> Void in
             expectation.fulfill()
-            XCTAssertNotNil(response)
+            XCTAssertGreaterThan(items.count, 0)
         }
-        
-        task?.resume()
         
         waitForExpectationsWithTimeout(8.0) { (error: NSError?) -> Void in
             XCTAssertTrue(false)
         }
     }
-*/
     
 
 }

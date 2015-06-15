@@ -17,6 +17,7 @@
 		205AE8131AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		205AE8141AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		205EF4B81B2DF6CA0019FE77 /* USPSCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */; };
+		206223E31B2E679900D7E4FC /* USPSCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */; };
 		20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D881AED687E00A7A73F /* AppDelegate.swift */; };
 		20DE6D8B1AED687E00A7A73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D8A1AED687E00A7A73F /* ViewController.swift */; };
 		20DE6D8E1AED687E00A7A73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DE6D8C1AED687E00A7A73F /* Main.storyboard */; };
@@ -284,6 +285,7 @@
 				20DE6D9F1AED687E00A7A73F /* PackageTrackerTests.swift in Sources */,
 				55476F671AFFED4B00F9003C /* TestInfo.swift in Sources */,
 				204D48A31B21C62900E173AB /* Result.swift in Sources */,
+				206223E31B2E679900D7E4FC /* USPSCommunicator.swift in Sources */,
 				55476F5F1AFFD57300F9003C /* Detail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
