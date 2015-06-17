@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Info:  NSObject, NSXMLParserDelegate, Printable {
+class Info:  NSObject, NSXMLParserDelegate {
 
     var id = ""
     var summary = Summary()
@@ -16,15 +16,15 @@ class Info:  NSObject, NSXMLParserDelegate, Printable {
 
     private var parsingContext: NSXMLParserDelegate?
 
-    func parser(parser: NSXMLParser, foundCharacters string: String?) {
+    func parser(parser: NSXMLParser, foundCharacters string: String) {
         if let currentContext = parsingContext {
             currentContext.parser!(parser, foundCharacters: string)
         }
     }
     
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI : String?, qualifiedName: String?, attributes attributeDict: [NSObject: AnyObject]) {
+    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI : String?, qualifiedName: String?, attributes attributeDict: [String: String]) {
         if elementName == "TrackInfo" {
-            id = attributeDict["ID"] as! String
+            id = attributeDict["ID"] ?? ""
         } else if elementName == "TrackSummary" {
             parsingContext = summary
         } else if elementName == "TrackDetail" {

@@ -9,6 +9,9 @@
 import UIKit
 import XCTest
 
+@testable
+import PackageTracker
+
 class TestInfo: XCTestCase {
 
     override func setUp() {
@@ -28,7 +31,7 @@ class TestInfo: XCTestCase {
         let xmlParser = NSXMLParser(data: data)
         let packageInfo = Info()
         xmlParser.delegate = packageInfo
-        let parsed = xmlParser.parse()
+        xmlParser.parse()
         
         XCTAssertEqual(packageInfo.id, "9400116901500000000000")
         XCTAssertEqual(packageInfo.summary.event, "Delivered, In/At Mailbox")
