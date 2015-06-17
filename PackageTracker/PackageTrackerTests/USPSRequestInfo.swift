@@ -12,8 +12,7 @@ struct USPSRequestInfo {
     let userID: String
     let packageID: String
     var requestURL: NSURL? {
-//        return NSURL(string: serializedXML, relativeToURL: NSURL(string: baseURLString)!)
-        return NSURL(string: serializedXML)
+        return NSURL(string: serializedXML, relativeToURL: NSURL(string: baseURLString)!)
     }
     
     var baseURLString: String {
@@ -22,7 +21,7 @@ struct USPSRequestInfo {
     
     var serializedXML: String {
         get {
-            let urlText = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=<?xml version=\"1.0\" encoding=\"UTF‐8\" ?><TrackRequest USERID=\"\(userID)\"><TrackID ID=\"\(packageID)\"></TrackID></TrackRequest>"
+            let urlText = "ShippingAPI.dll?API=TrackV2&XML=<?xml version=\"1.0\" encoding=\"UTF‐8\" ?><TrackFieldRequest USERID=\"\(userID)\"><TrackID ID=\"\(packageID)\"></TrackID></TrackFieldRequest>"
             return urlText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) ?? ""
         }
     }

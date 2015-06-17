@@ -19,11 +19,11 @@ class USPSRequestFlow: XCTestCase {
         
         let uspsRequestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
     
-        let expectedXMLString = "http://production.shippingapis.com/ShippingAPI.dll?API=TrackV2&XML=%3C?xml%20version=%221.0%22%20encoding=%22UTF%E2%80%908%22%20?%3E%3CTrackFieldRequest%20USERID=%22conceptsincode%22%3E%3CTrackID%20ID=%2212345%22%3E%3C/TrackID%3E%3C/TrackFieldRequest%3E"
+        let expectedXMLString = "ShippingAPI.dll?API=TrackV2&XML=%3C?xml%20version=%221.0%22%20encoding=%22UTF%E2%80%908%22%20?%3E%3CTrackFieldRequest%20USERID=%22conceptsincode%22%3E%3CTrackID%20ID=%2212345%22%3E%3C/TrackID%3E%3C/TrackFieldRequest%3E"
         
         // when
         let resultXMLString = uspsRequestInfo.serializedXML
-        
+
         // then
         XCTAssertEqual(resultXMLString, expectedXMLString, "XML strings should be equal")
     }
@@ -59,19 +59,30 @@ class USPSRequestFlow: XCTestCase {
     }
     
     func testDataGetsReceived() {
-        let userID = "conceptsincode"
-        let packageID = "12345"
+        let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json")!
+        let data = NSData(contentsOfFile: filePath)!
+        var json: [String : String]!
+        do {
+            json = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as! [String : String]
+        } catch {
+            XCTFail("failed with error \(error)")
+        }
+        
+        guard let userID = json["userID"], packageID = json["packageID"] else {
+            XCTFail("userID and packageID should be gotten from json")
+            return
+        }
         
         let request = USPSRequestInfo(userID: userID, packageID: packageID)
         let expectation = expectationWithDescription("testing getting data")
         
         USPSManager.fetchPackageResults(request) { (items: [String]) -> Void in
-            expectation.fulfill()
             XCTAssertGreaterThan(items.count, 0)
+            expectation.fulfill()
         }
         
         waitForExpectationsWithTimeout(8.0) { (error: NSError?) -> Void in
-            XCTAssertTrue(false)
+            print("failed with error: \(error?.localizedDescription ?? String())")
         }
     }
     

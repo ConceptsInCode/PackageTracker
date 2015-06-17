@@ -37,17 +37,3 @@ struct USPSCommunicator {
     }
 }
 
-struct USPSManager {
-    
-    static func fetchPackageResults(requestInfo: USPSRequestInfo, completionHandler: (([String]) -> Void)?) {
-        
-        USPSCommunicator.fetchPackageResults(requestInfo) { (data) -> Void in
-            let xmlParser = NSXMLParser(data: data)
-            let packageInfo = Info()
-            xmlParser.delegate = packageInfo
-            xmlParser.parse()
-            let strings = packageInfo.details.map { $0.description }
-            completionHandler?(strings)
-        }
-    }
-}

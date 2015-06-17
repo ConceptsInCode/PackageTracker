@@ -52,5 +52,3 @@ class Detail: NSObject, NSXMLParserDelegate {
         return "\(eventDate), \(eventTime), \(event)"
     }
 }
-
-
