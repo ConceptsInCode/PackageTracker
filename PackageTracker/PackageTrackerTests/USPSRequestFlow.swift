@@ -9,6 +9,9 @@
 import UIKit
 import XCTest
 
+@testable
+import PackageTracker
+
 class USPSRequestFlow: XCTestCase {
     
     func testProvidingRequestInfoReturnsSerializedXML() {

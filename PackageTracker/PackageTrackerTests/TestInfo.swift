@@ -9,6 +9,9 @@
 import UIKit
 import XCTest
 
+@testable
+import PackageTracker
+
 class TestInfo: XCTestCase {
 
     override func setUp() {
