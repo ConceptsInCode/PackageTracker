@@ -33,7 +33,7 @@ struct USPSCommunicator {
             }
         }
         
-        task!.resume()
+        task.resume()
     }
 }
 

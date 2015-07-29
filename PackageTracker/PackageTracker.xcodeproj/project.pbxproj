@@ -15,6 +15,10 @@
 		205AE8131AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		205AE8141AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		205EF4B81B2DF6CA0019FE77 /* USPSCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */; };
+		2092AAF11B68613E005DBC46 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092AAF01B68613E005DBC46 /* PersistenceController.swift */; };
+		2092AB151B686623005DBC46 /* PackageModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2092AB131B686623005DBC46 /* PackageModel.xcdatamodeld */; };
+		2092AB201B6873F1005DBC46 /* Package+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092AB1E1B6873F1005DBC46 /* Package+CoreDataProperties.swift */; };
+		2092AB211B6873F1005DBC46 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092AB1F1B6873F1005DBC46 /* Package.swift */; };
 		20D1034D1B35D6D400774E48 /* USPSConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 20D1034C1B35D6D400774E48 /* USPSConfig.json */; };
 		20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D881AED687E00A7A73F /* AppDelegate.swift */; };
 		20DE6D8B1AED687E00A7A73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D8A1AED687E00A7A73F /* ViewController.swift */; };
@@ -53,6 +57,10 @@
 		204D48A11B21C62900E173AB /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		205AE8121AED794D00289F3F /* SampleUSPSXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SampleUSPSXML.xml; sourceTree = "<group>"; };
 		205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USPSCommunicator.swift; sourceTree = "<group>"; };
+		2092AAF01B68613E005DBC46 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistenceController.swift; path = ../PersistenceController.swift; sourceTree = "<group>"; };
+		2092AB141B686623005DBC46 /* PackageModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PackageModel.xcdatamodel; sourceTree = "<group>"; };
+		2092AB1E1B6873F1005DBC46 /* Package+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Package+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2092AB1F1B6873F1005DBC46 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		20D1034C1B35D6D400774E48 /* USPSConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = USPSConfig.json; sourceTree = "<group>"; };
 		20DE6D831AED687E00A7A73F /* PackageTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PackageTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE6D871AED687E00A7A73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -120,6 +128,7 @@
 		20DE6D851AED687E00A7A73F /* PackageTracker */ = {
 			isa = PBXGroup;
 			children = (
+				2092AAF01B68613E005DBC46 /* PersistenceController.swift */,
 				205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */,
 				2029545A1B3119A400F96975 /* USPSManager.swift */,
 				55476F591AFFD2E200F9003C /* Model */,
@@ -176,6 +185,9 @@
 		55476F591AFFD2E200F9003C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2092AB1E1B6873F1005DBC46 /* Package+CoreDataProperties.swift */,
+				2092AB1F1B6873F1005DBC46 /* Package.swift */,
+				2092AB131B686623005DBC46 /* PackageModel.xcdatamodeld */,
 				55476F5A1AFFD34C00F9003C /* Summary.swift */,
 				55476F5D1AFFD57300F9003C /* Detail.swift */,
 				55476F601AFFD5ED00F9003C /* Info.swift */,
@@ -318,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2092AB201B6873F1005DBC46 /* Package+CoreDataProperties.swift in Sources */,
 				20182FFA1B1365F0002824F4 /* USPSRequestInfo.swift in Sources */,
 				55476F5E1AFFD57300F9003C /* Detail.swift in Sources */,
 				55476F5B1AFFD34C00F9003C /* Summary.swift in Sources */,
@@ -327,6 +340,9 @@
 				205EF4B81B2DF6CA0019FE77 /* USPSCommunicator.swift in Sources */,
 				55476F611AFFD5ED00F9003C /* Info.swift in Sources */,
 				20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */,
+				2092AAF11B68613E005DBC46 /* PersistenceController.swift in Sources */,
+				2092AB151B686623005DBC46 /* PackageModel.xcdatamodeld in Sources */,
+				2092AB211B6873F1005DBC46 /* Package.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +607,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2092AB131B686623005DBC46 /* PackageModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2092AB141B686623005DBC46 /* PackageModel.xcdatamodel */,
+			);
+			currentVersion = 2092AB141B686623005DBC46 /* PackageModel.xcdatamodel */;
+			path = PackageModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 20DE6D7B1AED687E00A7A73F /* Project object */;
 }
