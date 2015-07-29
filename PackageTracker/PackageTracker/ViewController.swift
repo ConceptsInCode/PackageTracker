@@ -8,9 +8,16 @@
 
 import UIKit
 import Foundation
+import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource {
     
+    lazy var persistenceController: PersistenceController = PersistenceController(modelName: "PackageModel", storeType: .SQLite) {
+        print("persistence controller created")
+        NSNotificationCenter.defaultCenter().postNotificationName("core data stack created", object: nil)
+    }
+
+
     var items = [String]()
 
     @IBOutlet weak var tableView: UITableView!
@@ -19,8 +26,18 @@ class ViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        persistenceController.mainContext
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateUI:"), name: "core data stack created", object: nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "core data stack created", object: nil)
+    }
 
     @IBAction func trackPackageTapped(sender: UIButton) {
         
@@ -32,9 +49,18 @@ class ViewController: UIViewController, UITableViewDataSource {
         let userID = json["userID"] as! String
         let packageID = trackingTextField.text ?? ""
         let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
+        
+        let workerContext = WorkerContext(parent: persistenceController.mainContext)
+        let package = workerContext.insert("Package") as! Package
+        package.packageID = requestInfo.packageID
+        workerContext.save { () -> Void in
+            print("i saved!")
+        }
+
         USPSManager.fetchPackageResults(requestInfo) { (items: [String]) -> Void in
             self.items = items
             self.tableView.reloadData()
+            self.persistenceController.save()
         }
     }
     
@@ -67,6 +93,13 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
+    }
+    
+    func updateUI(notification: NSNotification) {
+        let fetchRequest = NSFetchRequest(entityName: "Package")
+        let context = persistenceController.mainContext
+        let objects = try! context.executeFetchRequest(fetchRequest)
+        print("objects count: \(objects.count)")
     }
 
 }
