@@ -21,6 +21,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fTD-5L-kZf">
                                 <rect key="frame" x="156" y="28" width="180" height="30"/>
                                 <animations/>
+                                <accessibility key="accessibilityConfiguration" label="Package ID input field"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="iiO-TC-7Ua"/>
                                 </constraints>
@@ -30,6 +31,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nTq-yR-VH5">
                                 <rect key="frame" x="344" y="28" width="101" height="30"/>
                                 <animations/>
+                                <accessibility key="accessibilityConfiguration" label="Track Package"/>
                                 <state key="normal" title="Track Package">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
