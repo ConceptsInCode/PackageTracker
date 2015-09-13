@@ -19,6 +19,9 @@
 		2092AB151B686623005DBC46 /* PackageModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2092AB131B686623005DBC46 /* PackageModel.xcdatamodeld */; };
 		2092AB201B6873F1005DBC46 /* Package+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092AB1E1B6873F1005DBC46 /* Package+CoreDataProperties.swift */; };
 		2092AB211B6873F1005DBC46 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092AB1F1B6873F1005DBC46 /* Package.swift */; };
+		20C269621BA510AD0044FCA9 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C269611BA510AD0044FCA9 /* ViewControllerTests.swift */; settings = {ASSET_TAGS = (); }; };
+		20C269641BA6054D0044FCA9 /* TrackingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C269631BA6054D0044FCA9 /* TrackingHistoryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		20C269661BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C269651BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift */; settings = {ASSET_TAGS = (); }; };
 		20D1034D1B35D6D400774E48 /* USPSConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 20D1034C1B35D6D400774E48 /* USPSConfig.json */; };
 		20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D881AED687E00A7A73F /* AppDelegate.swift */; };
 		20DE6D8B1AED687E00A7A73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D8A1AED687E00A7A73F /* ViewController.swift */; };
@@ -61,6 +64,9 @@
 		2092AB141B686623005DBC46 /* PackageModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PackageModel.xcdatamodel; sourceTree = "<group>"; };
 		2092AB1E1B6873F1005DBC46 /* Package+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Package+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		2092AB1F1B6873F1005DBC46 /* Package.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		20C269611BA510AD0044FCA9 /* ViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
+		20C269631BA6054D0044FCA9 /* TrackingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingHistoryViewController.swift; sourceTree = "<group>"; };
+		20C269651BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingHistoryViewControllerTests.swift; sourceTree = "<group>"; };
 		20D1034C1B35D6D400774E48 /* USPSConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = USPSConfig.json; sourceTree = "<group>"; };
 		20DE6D831AED687E00A7A73F /* PackageTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PackageTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE6D871AED687E00A7A73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 		20DE6D851AED687E00A7A73F /* PackageTracker */ = {
 			isa = PBXGroup;
 			children = (
+				20C269631BA6054D0044FCA9 /* TrackingHistoryViewController.swift */,
 				2092AAF01B68613E005DBC46 /* PersistenceController.swift */,
 				205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */,
 				2029545A1B3119A400F96975 /* USPSManager.swift */,
@@ -157,9 +164,11 @@
 		20DE6D9B1AED687E00A7A73F /* PackageTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				20C269651BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift */,
 				20DE6D9C1AED687E00A7A73F /* Supporting Files */,
 				55476F661AFFED4B00F9003C /* TestInfo.swift */,
 				20182FF71B1364B4002824F4 /* USPSRequestFlow.swift */,
+				20C269611BA510AD0044FCA9 /* ViewControllerTests.swift */,
 			);
 			path = PackageTrackerTests;
 			sourceTree = "<group>";
@@ -338,6 +347,7 @@
 				2029545B1B3119A400F96975 /* USPSManager.swift in Sources */,
 				204D48A21B21C62900E173AB /* Result.swift in Sources */,
 				205EF4B81B2DF6CA0019FE77 /* USPSCommunicator.swift in Sources */,
+				20C269641BA6054D0044FCA9 /* TrackingHistoryViewController.swift in Sources */,
 				55476F611AFFD5ED00F9003C /* Info.swift in Sources */,
 				20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */,
 				2092AAF11B68613E005DBC46 /* PersistenceController.swift in Sources */,
@@ -350,7 +360,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C269621BA510AD0044FCA9 /* ViewControllerTests.swift in Sources */,
 				20182FF81B1364B4002824F4 /* USPSRequestFlow.swift in Sources */,
+				20C269661BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift in Sources */,
 				55476F671AFFED4B00F9003C /* TestInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

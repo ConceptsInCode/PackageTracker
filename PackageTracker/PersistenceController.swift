@@ -86,6 +86,17 @@ public struct PersistenceController {
         }
         
     }
+    
+    public func fetchAll(entity entity: String) -> [AnyObject] {
+        let fetchRequest = NSFetchRequest(entityName: entity)
+        var result = [AnyObject]()
+        do {
+            result = try mainContext.executeFetchRequest(fetchRequest)
+        } catch {
+            print("error fetching")
+        }
+        return result
+    }
 }
 
 public struct WorkerContext {

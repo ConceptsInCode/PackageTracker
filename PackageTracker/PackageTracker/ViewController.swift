@@ -22,12 +22,17 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var trackingTextField: UITextField!
+    @IBOutlet weak var trackPackageButton: UIButton!
+    @IBOutlet weak var showHistoryButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        persistenceController.mainContext
+        showHistoryButton.setImage(UIImage(named: "disabledClock"), forState: .Disabled)
+        showHistoryButton.enabled = false
+        
+        let allObjects = persistenceController.fetchAll(entity: "Package")
+        print("all objects: \(allObjects.count)")
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -40,6 +45,7 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
 
     @IBAction func trackPackageTapped(sender: UIButton) {
+        guard let text = trackingTextField.text where !text.isEmpty else { return }
         
         trackingTextField.resignFirstResponder()
         
@@ -64,6 +70,10 @@ class ViewController: UIViewController, UITableViewDataSource {
         }
     }
     
+    @IBAction func showHistory(sender: AnyObject?) {
+        performSegueWithIdentifier("showHistorySegue", sender: nil)
+    }
+    
     private func parse(data: NSData) -> Info {
         let xmlParser = NSXMLParser(data: data)
         let packageInfo = Info()
@@ -73,10 +83,10 @@ class ViewController: UIViewController, UITableViewDataSource {
         return packageInfo
     }
     
-    private func updateUI(info: Info) {
-        items = info.details.map { $0.event }
-        tableView.reloadData()
-    }
+//    private func updateUIWithInfo(info: Info) {
+//        items = info.details.map { $0.event }
+//        tableView.reloadData()
+//    }
     
     // MARK: UITableViewDataSource methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -96,10 +106,31 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     
     func updateUI(notification: NSNotification) {
+        // all this code shoudl go into TrackingHistoryViewController.
+        // this function should only enable the history button if allObjects.count > 0.
+        let allObjects = persistenceController.fetchAll(entity: "Package") as! [Package]
+        print("all objects: \(allObjects.count)")
+        allObjects.forEach { print($0.packageID) }
+        
+        let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json")!
+        let data = NSData(contentsOfFile: filePath)!
+        let json: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+        let userID = json["userID"] as! String
+        
+        if let package = allObjects.first, packageID = package.packageID {
+            let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
+            USPSManager.fetchPackageResults(requestInfo) { items in
+                self.items = items
+                self.tableView.reloadData()
+            }
+        }
+
+        /*
         let fetchRequest = NSFetchRequest(entityName: "Package")
         let context = persistenceController.mainContext
         let objects = try! context.executeFetchRequest(fetchRequest)
         print("objects count: \(objects.count)")
+*/
     }
 
 }
