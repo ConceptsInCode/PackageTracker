@@ -83,11 +83,6 @@ class ViewController: UIViewController, UITableViewDataSource {
         return packageInfo
     }
     
-//    private func updateUIWithInfo(info: Info) {
-//        items = info.details.map { $0.event }
-//        tableView.reloadData()
-//    }
-    
     // MARK: UITableViewDataSource methods
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
@@ -106,31 +101,35 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     
     func updateUI(notification: NSNotification) {
-        // all this code shoudl go into TrackingHistoryViewController.
+        // all this code should go into TrackingHistoryViewController.
         // this function should only enable the history button if allObjects.count > 0.
-        let allObjects = persistenceController.fetchAll(entity: "Package") as! [Package]
-        print("all objects: \(allObjects.count)")
-        allObjects.forEach { print($0.packageID) }
         
+        let packages = persistenceController.fetchAll(entity: "Package")
+        showHistoryButton.enabled = (packages.count > 0)
+
+    }
+    
+    private func userIDFromJSON() -> String {
         let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json")!
         let data = NSData(contentsOfFile: filePath)!
         let json: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
         let userID = json["userID"] as! String
-        
-        if let package = allObjects.first, packageID = package.packageID {
-            let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
-            USPSManager.fetchPackageResults(requestInfo) { items in
-                self.items = items
-                self.tableView.reloadData()
+        return userID
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showHistorySegue", let destinationVC = segue.destinationViewController as? TrackingHistoryViewController {
+            destinationVC.persistenceController = persistenceController
+            destinationVC.handleSelection = { [weak self] packageID in
+                
+                let userID = self?.userIDFromJSON() ?? ""
+                let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
+                USPSManager.fetchPackageResults(requestInfo) { [weak self] items in
+                    self?.items = items
+                    self?.tableView.reloadData()
+                }
             }
         }
-
-        /*
-        let fetchRequest = NSFetchRequest(entityName: "Package")
-        let context = persistenceController.mainContext
-        let objects = try! context.executeFetchRequest(fetchRequest)
-        print("objects count: \(objects.count)")
-*/
     }
 
 }

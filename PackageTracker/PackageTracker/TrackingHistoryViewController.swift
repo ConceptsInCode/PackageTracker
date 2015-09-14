@@ -11,27 +11,42 @@ import UIKit
 class TrackingHistoryViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    // dependencies
+    var persistenceController: PersistenceController!
+    var handleSelection: ((String) -> Void)?
+    
+    // data source 
+    var items = [Package]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        fetchAndDisplayHistory()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func fetchAndDisplayHistory() {
+        guard let items = persistenceController?.fetchAll(entity: "Package") as? [Package] else { return }
+        self.items = items
+        tableView.reloadData()
+    }
+
+}
+
+extension TrackingHistoryViewController : UITableViewDataSource, UITableViewDelegate {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return items.count
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("HistoryCell") else { return UITableViewCell() }
+        cell.textLabel?.text = items[indexPath.row].packageNickname
+        cell.detailTextLabel?.text = items[indexPath.row].packageID
+        return cell
     }
-    */
-
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let packageID = items[indexPath.row].packageID ?? ""
+        dismissViewControllerAnimated(true, completion: { handleSelection?(packageID) })
+    }
 }

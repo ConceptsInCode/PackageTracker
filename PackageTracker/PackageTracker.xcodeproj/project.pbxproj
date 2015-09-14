@@ -164,11 +164,11 @@
 		20DE6D9B1AED687E00A7A73F /* PackageTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
-				20C269651BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift */,
 				20DE6D9C1AED687E00A7A73F /* Supporting Files */,
 				55476F661AFFED4B00F9003C /* TestInfo.swift */,
 				20182FF71B1364B4002824F4 /* USPSRequestFlow.swift */,
 				20C269611BA510AD0044FCA9 /* ViewControllerTests.swift */,
+				20C269651BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift */,
 			);
 			path = PackageTrackerTests;
 			sourceTree = "<group>";

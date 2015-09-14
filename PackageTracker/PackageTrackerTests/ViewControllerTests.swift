@@ -72,4 +72,13 @@ class ViewControllerTests: XCTestCase {
         }
     }
     
+    func testTrackingHistoryVCGetsPersistenceControllerVariableDependency() {
+        // when
+        sut.showHistory(nil)
+        
+        // then
+        guard let trackingVC = sut.presentedViewController as? TrackingHistoryViewController else { XCTFail("tracking vc should not be nil"); return }
+        XCTAssertNotNil(trackingVC.persistenceController, "persistenceController should not be nil, it should be set in source's prepareForSegue.")
+    }
+    
 }

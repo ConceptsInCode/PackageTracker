@@ -31,4 +31,12 @@ class TrackingHistoryViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.tableView.delegate)
     }
     
+    
+    func testItemsPropertyIsEmptyStringArrayAtFirst() {
+        XCTAssertEqual(sut.items.count, 0)
+    }
+    
+    func testPersistenceControllerVariableIsNil() {
+        XCTAssertNil(sut.persistenceController)
+    }
 }
