@@ -32,6 +32,11 @@ class ViewControllerTests: XCTestCase {
     }
     
     func testShowHistoryButtonOutletIsConnected() {
+        guard case UIUserInterfaceIdiom.Phone = sut.traitCollection.userInterfaceIdiom else {
+            XCTAssertTrue(true)
+            return
+        }
+        
         XCTAssertNotNil(sut.showHistoryButton)
     }
     
@@ -44,16 +49,31 @@ class ViewControllerTests: XCTestCase {
     }
     
     func testHistoryButtonAction() {
+        guard case UIUserInterfaceIdiom.Phone = sut.traitCollection.userInterfaceIdiom else {
+            XCTAssertTrue(true)
+            return
+        }
+        
         let button = sut.showHistoryButton
         let actions = button.actionsForTarget(sut, forControlEvent: .TouchUpInside) ?? []
         XCTAssertTrue(actions.contains("showHistory:"))
     }
     
     func testHistoryButtonIsDisabledUponInitialLoad() {
+        guard case UIUserInterfaceIdiom.Phone = sut.traitCollection.userInterfaceIdiom else {
+            XCTAssertTrue(true)
+            return
+        }
+        
         XCTAssertFalse(sut.showHistoryButton.enabled)
     }
     
     func testHistoryButtonImagesForStates() {
+        guard case UIUserInterfaceIdiom.Phone = sut.traitCollection.userInterfaceIdiom else {
+            XCTAssertTrue(true)
+            return
+        }
+        
         XCTAssertTrue(sut.showHistoryButton.imageForState(.Disabled) == UIImage(named: "disabledClock"))
         XCTAssertTrue(sut.showHistoryButton.imageForState(.Normal) == UIImage(named: "clock"))
     }
@@ -61,6 +81,10 @@ class ViewControllerTests: XCTestCase {
     
     // text actions produce results
     func testShowHistoryButtonPerformsSegue() {
+        guard case UIUserInterfaceIdiom.Phone = sut.traitCollection.userInterfaceIdiom else {
+            XCTAssertTrue(true)
+            return
+        }
         // when
         sut.showHistory(nil)
         
@@ -73,6 +97,10 @@ class ViewControllerTests: XCTestCase {
     }
     
     func testTrackingHistoryVCGetsPersistenceControllerVariableDependency() {
+        guard case UIUserInterfaceIdiom.Phone = sut.traitCollection.userInterfaceIdiom else {
+            XCTAssertTrue(true)
+            return
+        }
         // when
         sut.showHistory(nil)
         

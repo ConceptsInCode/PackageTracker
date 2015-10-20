@@ -28,8 +28,8 @@ class ViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showHistoryButton.setImage(UIImage(named: "disabledClock"), forState: .Disabled)
-        showHistoryButton.enabled = false
+        showHistoryButton?.setImage(UIImage(named: "disabledClock"), forState: .Disabled)
+        showHistoryButton?.enabled = false
         
         let allObjects = persistenceController.fetchAll(entity: "Package")
         print("all objects: \(allObjects.count)")
@@ -105,7 +105,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         // this function should only enable the history button if allObjects.count > 0.
         
         let packages = persistenceController.fetchAll(entity: "Package")
-        showHistoryButton.enabled = (packages.count > 0)
+        showHistoryButton?.enabled = (packages.count > 0)
 
     }
     
