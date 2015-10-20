@@ -25,7 +25,6 @@ public enum CoreDataStoreType {
     }
 }
 
-
 public struct PersistenceController {
 
     public let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
@@ -66,22 +65,12 @@ public struct PersistenceController {
         }
         
         mainContext.performBlockAndWait {
-//            var error: NSError?
-//            let mainSave = self.mainContext.save(&error)
-            try! self.mainContext.save()
-            
-//            if !mainSave {
-//                print("error saving main context. code: \(error?.code ?? 0). error: \(error?.localizedDescription ?? String())")
-//            }
-            
-            self.privateContext.performBlock {
-//                var privateError: NSError?
-//                let privateSave = self.privateContext.save(&privateError)
-                try! self.privateContext.save()
-                
-//                if !privateSave {
-//                    print("error saving private context. code: \(error?.code ?? 0). error: \(error?.localizedDescription ?? String())")
-//                }
+            if let _ = try? self.mainContext.save() {
+                self.privateContext.performBlock {
+                    if let _ =  try? self.privateContext.save() {
+                        // success
+                    }
+                }
             }
         }
         
