@@ -11,18 +11,21 @@ import Foundation
 struct USPSRequestInfo {
     let userID: String
     let packageID: String
-    var requestURL: NSURL? {
-        return NSURL(string: serializedXML, relativeToURL: NSURL(string: baseURLString)!)
-    }
     
     var baseURLString: String {
         return "http://production.shippingapis.com"
     }
     
+    var requestURL: NSURL? {
+        let baseURL = NSURL(string: baseURLString)!
+        return NSURL(string: serializedXML, relativeToURL: baseURL)!
+    }
+    
     var serializedXML: String {
         get {
             let urlText = "ShippingAPI.dll?API=TrackV2&XML=<?xml version=\"1.0\" encoding=\"UTF‐8\" ?><TrackFieldRequest USERID=\"\(userID)\"><TrackID ID=\"\(packageID)\"></TrackID></TrackFieldRequest>"
-            return urlText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding) ?? ""
+            let allowedCharacterSet = NSCharacterSet.URLQueryAllowedCharacterSet()
+            return urlText.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacterSet) ?? ""
         }
     }
     

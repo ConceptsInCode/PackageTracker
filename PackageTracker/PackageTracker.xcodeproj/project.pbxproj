@@ -22,13 +22,11 @@
 		20C269621BA510AD0044FCA9 /* ViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C269611BA510AD0044FCA9 /* ViewControllerTests.swift */; settings = {ASSET_TAGS = (); }; };
 		20C269641BA6054D0044FCA9 /* TrackingHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C269631BA6054D0044FCA9 /* TrackingHistoryViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		20C269661BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C269651BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift */; settings = {ASSET_TAGS = (); }; };
-		20D1034D1B35D6D400774E48 /* USPSConfig.json in Resources */ = {isa = PBXBuildFile; fileRef = 20D1034C1B35D6D400774E48 /* USPSConfig.json */; };
 		20DE6D891AED687E00A7A73F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D881AED687E00A7A73F /* AppDelegate.swift */; };
 		20DE6D8B1AED687E00A7A73F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE6D8A1AED687E00A7A73F /* ViewController.swift */; };
 		20DE6D8E1AED687E00A7A73F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DE6D8C1AED687E00A7A73F /* Main.storyboard */; };
 		20DE6D901AED687E00A7A73F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DE6D8F1AED687E00A7A73F /* Images.xcassets */; };
 		20DE6D931AED687E00A7A73F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DE6D911AED687E00A7A73F /* LaunchScreen.xib */; };
-		20FA40781B35153500B21A48 /* PackageTracker_UI_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FA40771B35153500B21A48 /* PackageTracker_UI_Tests.swift */; };
 		55476F5B1AFFD34C00F9003C /* Summary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55476F5A1AFFD34C00F9003C /* Summary.swift */; };
 		55476F5E1AFFD57300F9003C /* Detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55476F5D1AFFD57300F9003C /* Detail.swift */; };
 		55476F611AFFD5ED00F9003C /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55476F601AFFD5ED00F9003C /* Info.swift */; };
@@ -37,13 +35,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		20DE6D991AED687E00A7A73F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 20DE6D7B1AED687E00A7A73F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 20DE6D821AED687E00A7A73F;
-			remoteInfo = PackageTracker;
-		};
-		20FA407A1B35153500B21A48 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 20DE6D7B1AED687E00A7A73F /* Project object */;
 			proxyType = 1;
@@ -67,7 +58,6 @@
 		20C269611BA510AD0044FCA9 /* ViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		20C269631BA6054D0044FCA9 /* TrackingHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingHistoryViewController.swift; sourceTree = "<group>"; };
 		20C269651BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackingHistoryViewControllerTests.swift; sourceTree = "<group>"; };
-		20D1034C1B35D6D400774E48 /* USPSConfig.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = USPSConfig.json; sourceTree = "<group>"; };
 		20DE6D831AED687E00A7A73F /* PackageTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PackageTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE6D871AED687E00A7A73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20DE6D881AED687E00A7A73F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -77,9 +67,6 @@
 		20DE6D921AED687E00A7A73F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		20DE6D981AED687E00A7A73F /* PackageTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PackageTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE6D9D1AED687E00A7A73F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20FA40751B35153500B21A48 /* PackageTracker UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PackageTracker UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		20FA40771B35153500B21A48 /* PackageTracker_UI_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageTracker_UI_Tests.swift; sourceTree = "<group>"; };
-		20FA40791B35153500B21A48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55476F5A1AFFD34C00F9003C /* Summary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Summary.swift; sourceTree = "<group>"; };
 		55476F5D1AFFD57300F9003C /* Detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Detail.swift; sourceTree = "<group>"; };
 		55476F601AFFD5ED00F9003C /* Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
@@ -101,13 +88,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		20FA40721B35153500B21A48 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -116,7 +96,6 @@
 			children = (
 				20DE6D851AED687E00A7A73F /* PackageTracker */,
 				20DE6D9B1AED687E00A7A73F /* PackageTrackerTests */,
-				20FA40761B35153500B21A48 /* PackageTracker UI Tests */,
 				20DE6D841AED687E00A7A73F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,7 +105,6 @@
 			children = (
 				20DE6D831AED687E00A7A73F /* PackageTracker.app */,
 				20DE6D981AED687E00A7A73F /* PackageTrackerTests.xctest */,
-				20FA40751B35153500B21A48 /* PackageTracker UI Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,16 +159,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		20FA40761B35153500B21A48 /* PackageTracker UI Tests */ = {
-			isa = PBXGroup;
-			children = (
-				20D1034C1B35D6D400774E48 /* USPSConfig.json */,
-				20FA40771B35153500B21A48 /* PackageTracker_UI_Tests.swift */,
-				20FA40791B35153500B21A48 /* Info.plist */,
-			);
-			path = "PackageTracker UI Tests";
-			sourceTree = "<group>";
-		};
 		55476F591AFFD2E200F9003C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,24 +210,6 @@
 			productReference = 20DE6D981AED687E00A7A73F /* PackageTrackerTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		20FA40741B35153500B21A48 /* PackageTracker UI Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 20FA407C1B35153500B21A48 /* Build configuration list for PBXNativeTarget "PackageTracker UI Tests" */;
-			buildPhases = (
-				20FA40711B35153500B21A48 /* Sources */,
-				20FA40721B35153500B21A48 /* Frameworks */,
-				20FA40731B35153500B21A48 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				20FA407B1B35153500B21A48 /* PBXTargetDependency */,
-			);
-			name = "PackageTracker UI Tests";
-			productName = "PackageTracker UI Tests";
-			productReference = 20FA40751B35153500B21A48 /* PackageTracker UI Tests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -275,10 +225,6 @@
 					};
 					20DE6D971AED687E00A7A73F = {
 						CreatedOnToolsVersion = 6.3.1;
-						TestTargetID = 20DE6D821AED687E00A7A73F;
-					};
-					20FA40741B35153500B21A48 = {
-						CreatedOnToolsVersion = 7.0;
 						TestTargetID = 20DE6D821AED687E00A7A73F;
 					};
 				};
@@ -298,7 +244,6 @@
 			targets = (
 				20DE6D821AED687E00A7A73F /* PackageTracker */,
 				20DE6D971AED687E00A7A73F /* PackageTrackerTests */,
-				20FA40741B35153500B21A48 /* PackageTracker UI Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -321,14 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				205AE8141AED794D00289F3F /* SampleUSPSXML.xml in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		20FA40731B35153500B21A48 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				20D1034D1B35D6D400774E48 /* USPSConfig.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,14 +304,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		20FA40711B35153500B21A48 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				20FA40781B35153500B21A48 /* PackageTracker_UI_Tests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -382,11 +311,6 @@
 			isa = PBXTargetDependency;
 			target = 20DE6D821AED687E00A7A73F /* PackageTracker */;
 			targetProxy = 20DE6D991AED687E00A7A73F /* PBXContainerItemProxy */;
-		};
-		20FA407B1B35153500B21A48 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 20DE6D821AED687E00A7A73F /* PackageTracker */;
-			targetProxy = 20FA407A1B35153500B21A48 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -554,31 +478,6 @@
 			};
 			name = Release;
 		};
-		20FA407D1B35153500B21A48 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				INFOPLIST_FILE = "PackageTracker UI Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sixfivesoftware.PackageTracker-UI-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = PackageTracker;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		20FA407E1B35153500B21A48 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = "PackageTracker UI Tests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sixfivesoftware.PackageTracker-UI-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = PackageTracker;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -605,15 +504,6 @@
 			buildConfigurations = (
 				20DE6DA61AED687E00A7A73F /* Debug */,
 				20DE6DA71AED687E00A7A73F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		20FA407C1B35153500B21A48 /* Build configuration list for PBXNativeTarget "PackageTracker UI Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				20FA407D1B35153500B21A48 /* Debug */,
-				20FA407E1B35153500B21A48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
