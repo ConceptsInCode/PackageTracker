@@ -16,7 +16,11 @@ class TrackingHistoryViewController: UIViewController {
     @IBOutlet weak var trackPackageButton: UIButton!
     
     // dependencies
-    var persistenceController: PersistenceController!
+    lazy var persistenceController: PersistenceController = PersistenceController(modelName: "PackageModel", storeType: .SQLite) { pvc in
+        print("persistence controller created")
+        NSNotificationCenter.defaultCenter().postNotificationName("core data stack created", object: nil)
+    }
+
     var handleSelection: ((String) -> Void)?
     
     // data source 
@@ -33,24 +37,39 @@ class TrackingHistoryViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fetchAndDisplayHistory", name: "CoreDataReady", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fetchAndDisplayHistory", name: "CoreDataReady", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("fetchAndDisplayHistory"), name: "core data stack created", object: nil)
     }
     
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CoreDataReady", object: nil)
+//        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CoreDataReady", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "core data stack created", object: nil)
     }
     
     
     // MARK: actions
     @IBAction func trackPackage(sender: AnyObject?) {
         selectedPackageID = trackPackageTextField.text
+        
         performSegueWithIdentifier("showDetail", sender: nil)
     }
 
     func fetchAndDisplayHistory() {
-        guard let items = persistenceController?.fetchAll(entity: "Package") as? [Package] else { return }
+        guard let items = persistenceController.fetchAll(entity: "Package") as? [Package] else { return }
         self.items = items
-        tableView.reloadData()
+        dispatch_async(dispatch_get_main_queue()) {
+            self.tableView.reloadData()
+        }
+    }
+    
+    func persistPackage(packageID: String) {
+        let workerContext = WorkerContext(parent: self.persistenceController.mainContext)
+        let package = workerContext.insert("Package") as! Package
+        package.packageID = packageID
+        workerContext.save {
+            self.fetchAndDisplayHistory()
+            self.persistenceController.save()
+        }
     }
     
     // MARK: navigation
@@ -61,7 +80,8 @@ class TrackingHistoryViewController: UIViewController {
             packageInjectable = navVC.topViewController as? PackageDependencyInjectable {
                 
                 guard let packageID = selectedPackageID else { return }
-                packageInjectable.updateDetailsForPackageID(packageID)
+                
+                packageInjectable.updateDetailsForPackageID(packageID) { self.persistPackage(packageID) }
                 
                 let vc = navVC.topViewController
                 vc?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
@@ -90,8 +110,8 @@ extension TrackingHistoryViewController : UITableViewDataSource, UITableViewDele
     }
 }
 
-extension TrackingHistoryViewController : PersistenceControllerAccessible { }
+//extension TrackingHistoryViewController : PersistenceControllerAccessible { }
 
 protocol PackageDependencyInjectable {
-    func updateDetailsForPackageID(packageID: String)
+    func updateDetailsForPackageID(packageID: String, completion: Void -> Void)
 }

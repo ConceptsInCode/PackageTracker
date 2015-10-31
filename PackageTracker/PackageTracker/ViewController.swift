@@ -12,47 +12,34 @@ import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource {
     
-    lazy var persistenceController: PersistenceController = PersistenceController(modelName: "PackageModel", storeType: .SQLite) { pvc in
-        print("persistence controller created")
-        NSNotificationCenter.defaultCenter().postNotificationName("core data stack created", object: nil)
-    }
-
 
     var items = [String]()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var trackingTextField: UITextField!
     @IBOutlet weak var trackPackageButton: UIButton!
-    @IBOutlet weak var showHistoryButton: UIButton!
+//    @IBOutlet weak var showHistoryButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showHistoryButton?.setImage(UIImage(named: "disabledClock"), forState: .Disabled)
-        showHistoryButton?.enabled = false
-        
+//        showHistoryButton?.setImage(UIImage(named: "disabledClock"), forState: .Disabled)
+//        showHistoryButton?.enabled = false
+//        
 //        let allObjects = persistenceController.fetchAll(entity: "Package")
 //        print("all objects: \(allObjects.count)")
-        _ = persistenceController // instantiates lazy property
+//        _ = persistenceController // instantiates lazy property
         
 //        splitViewController?.viewControllers.
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateUI:"), name: "core data stack created", object: nil)
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "core data stack created", object: nil)
-    }
-
+    /*
     @IBAction func trackPackageTapped(sender: UIButton) {
         guard let text = trackingTextField.text where !text.isEmpty else { return }
         
         trackingTextField.resignFirstResponder()
         
-        guard let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "jsn") else {
+        guard let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json") else {
             let mockRequestInfo = USPSRequestInfo(userID: "steve", packageID: "123")
             USPSManager.fetchPackageResults(mockRequestInfo) { items in
                 self.items = ["There is nothing to track"]
@@ -80,6 +67,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             self.postCoreDataReady()
         }
     }
+*/
     
     @IBAction func showHistory(sender: AnyObject?) {
         performSegueWithIdentifier("showHistorySegue", sender: nil)
@@ -111,20 +99,22 @@ class ViewController: UIViewController, UITableViewDataSource {
         return items.count
     }
     
+    /*
     func updateUI(notification: NSNotification) {
         
-        let split = splitViewController as? PadSplitViewController
-        split?.setPersistenceControllerForMasterViewController(persistenceController)
+//        let split = splitViewController as? PadSplitViewController
+//        split?.setPersistenceControllerForMasterViewController(persistenceController)
         
-        let packages = persistenceController.fetchAll(entity: "Package")
-        showHistoryButton?.enabled = (packages.count > 0)
+//        let packages = persistenceController.fetchAll(entity: "Package")
+//        showHistoryButton?.enabled = (packages.count > 0)
 
-        postCoreDataReady()
+//        postCoreDataReady()
     }
+    */
     
-    private func postCoreDataReady() {
-        NSNotificationCenter.defaultCenter().postNotificationName("CoreDataReady", object: nil)
-    }
+//    private func postCoreDataReady() {
+//        NSNotificationCenter.defaultCenter().postNotificationName("CoreDataReady", object: nil)
+//    }
     
     private func userIDFromJSON() -> String? {
         guard let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json") else { return nil }
@@ -134,6 +124,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         return userID
     }
     
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showHistorySegue", let destinationVC = segue.destinationViewController as? TrackingHistoryViewController {
             destinationVC.persistenceController = persistenceController
@@ -142,8 +133,9 @@ class ViewController: UIViewController, UITableViewDataSource {
             }
         }
     }
+    */
     
-    func fetchPackageInfo(packageID packageID: String) {
+    func fetchPackageInfo(packageID packageID: String, completion: (Void -> Void)? = nil) {
         guard let userID = userIDFromJSON() else {
             self.items = ["There's nothing to see here"]
             self.tableView?.reloadData()
@@ -151,16 +143,22 @@ class ViewController: UIViewController, UITableViewDataSource {
         }
         let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
         USPSManager.fetchPackageResults(requestInfo) { [weak self] items in
-            self?.items = items
-            self?.tableView.reloadData()
+            defer { self?.tableView.reloadData() }
+            if items.isEmpty {
+                self?.items = ["There's nothing to see here"]
+            } else {
+                self?.items = items
+                completion?()
+            }
+            
         }
     }
 
 }
 
 extension ViewController : PackageDependencyInjectable {
-    func updateDetailsForPackageID(packageID: String) {
-        fetchPackageInfo(packageID: packageID)
+    func updateDetailsForPackageID(packageID: String, completion: Void -> Void) {
+        fetchPackageInfo(packageID: packageID, completion: completion)
     }
 }
 

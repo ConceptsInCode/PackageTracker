@@ -47,9 +47,9 @@ class TrackingHistoryViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.items.count, 0)
     }
     
-    func testPersistenceControllerVariableIsNil() {
-        XCTAssertNil(sut.persistenceController)
-    }
+//    func testPersistenceControllerVariableIsNil() {
+//        XCTAssertNil(sut.persistenceController)
+//    }
     
     
     // MARK: test buttons contain actions
