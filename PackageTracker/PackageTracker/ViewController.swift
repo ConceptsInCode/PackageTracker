@@ -12,7 +12,7 @@ import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource {
     
-    lazy var persistenceController: PersistenceController = PersistenceController(modelName: "PackageModel", storeType: .SQLite) {
+    lazy var persistenceController: PersistenceController = PersistenceController(modelName: "PackageModel", storeType: .SQLite) { pvc in
         print("persistence controller created")
         NSNotificationCenter.defaultCenter().postNotificationName("core data stack created", object: nil)
     }
@@ -31,8 +31,11 @@ class ViewController: UIViewController, UITableViewDataSource {
         showHistoryButton?.setImage(UIImage(named: "disabledClock"), forState: .Disabled)
         showHistoryButton?.enabled = false
         
-        let allObjects = persistenceController.fetchAll(entity: "Package")
-        print("all objects: \(allObjects.count)")
+//        let allObjects = persistenceController.fetchAll(entity: "Package")
+//        print("all objects: \(allObjects.count)")
+        _ = persistenceController // instantiates lazy property
+        
+//        splitViewController?.viewControllers.
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -49,7 +52,14 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         trackingTextField.resignFirstResponder()
         
-        let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json")!
+        guard let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "jsn") else {
+            let mockRequestInfo = USPSRequestInfo(userID: "steve", packageID: "123")
+            USPSManager.fetchPackageResults(mockRequestInfo) { items in
+                self.items = ["There is nothing to track"]
+                self.tableView.reloadData()
+            }
+            return
+        }
         let data = NSData(contentsOfFile: filePath)!
         let json: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
         let userID = json["userID"] as! String
@@ -67,6 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             self.items = items
             self.tableView.reloadData()
             self.persistenceController.save()
+            self.postCoreDataReady()
         }
     }
     
@@ -101,16 +112,22 @@ class ViewController: UIViewController, UITableViewDataSource {
     }
     
     func updateUI(notification: NSNotification) {
-        // all this code should go into TrackingHistoryViewController.
-        // this function should only enable the history button if allObjects.count > 0.
+        
+        let split = splitViewController as? PadSplitViewController
+        split?.setPersistenceControllerForMasterViewController(persistenceController)
         
         let packages = persistenceController.fetchAll(entity: "Package")
         showHistoryButton?.enabled = (packages.count > 0)
 
+        postCoreDataReady()
     }
     
-    private func userIDFromJSON() -> String {
-        let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json")!
+    private func postCoreDataReady() {
+        NSNotificationCenter.defaultCenter().postNotificationName("CoreDataReady", object: nil)
+    }
+    
+    private func userIDFromJSON() -> String? {
+        guard let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json") else { return nil }
         let data = NSData(contentsOfFile: filePath)!
         let json: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
         let userID = json["userID"] as! String
@@ -121,16 +138,29 @@ class ViewController: UIViewController, UITableViewDataSource {
         if segue.identifier == "showHistorySegue", let destinationVC = segue.destinationViewController as? TrackingHistoryViewController {
             destinationVC.persistenceController = persistenceController
             destinationVC.handleSelection = { [weak self] packageID in
-                
-                let userID = self?.userIDFromJSON() ?? ""
-                let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
-                USPSManager.fetchPackageResults(requestInfo) { [weak self] items in
-                    self?.items = items
-                    self?.tableView.reloadData()
-                }
+                self?.fetchPackageInfo(packageID: packageID)
             }
         }
     }
+    
+    func fetchPackageInfo(packageID packageID: String) {
+        guard let userID = userIDFromJSON() else {
+            self.items = ["There's nothing to see here"]
+            self.tableView?.reloadData()
+            return
+        }
+        let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
+        USPSManager.fetchPackageResults(requestInfo) { [weak self] items in
+            self?.items = items
+            self?.tableView.reloadData()
+        }
+    }
 
+}
+
+extension ViewController : PackageDependencyInjectable {
+    func updateDetailsForPackageID(packageID: String) {
+        fetchPackageInfo(packageID: packageID)
+    }
 }
 

@@ -10,7 +10,10 @@ import UIKit
 
 class TrackingHistoryViewController: UIViewController {
     
+    // MARK: outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var trackPackageTextField: UITextField!
+    @IBOutlet weak var trackPackageButton: UIButton!
     
     // dependencies
     var persistenceController: PersistenceController!
@@ -19,16 +22,51 @@ class TrackingHistoryViewController: UIViewController {
     // data source 
     var items = [Package]()
 
+    var selectedPackageID: String?
+    
+    // MARK: view lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         fetchAndDisplayHistory()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "fetchAndDisplayHistory", name: "CoreDataReady", object: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "CoreDataReady", object: nil)
+    }
+    
+    
+    // MARK: actions
+    @IBAction func trackPackage(sender: AnyObject?) {
+        selectedPackageID = trackPackageTextField.text
+        performSegueWithIdentifier("showDetail", sender: nil)
     }
 
     func fetchAndDisplayHistory() {
         guard let items = persistenceController?.fetchAll(entity: "Package") as? [Package] else { return }
         self.items = items
         tableView.reloadData()
+    }
+    
+    // MARK: navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showDetail",
+//            let indexPath = tableView.indexPathForSelectedRow,
+            let navVC = segue.destinationViewController as? UINavigationController,
+            packageInjectable = navVC.topViewController as? PackageDependencyInjectable {
+                
+                guard let packageID = selectedPackageID else { return }
+                packageInjectable.updateDetailsForPackageID(packageID)
+                
+                let vc = navVC.topViewController
+                vc?.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem()
+                vc?.navigationItem.leftItemsSupplementBackButton = true
+        }
     }
 
 }
@@ -46,7 +84,14 @@ extension TrackingHistoryViewController : UITableViewDataSource, UITableViewDele
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let packageID = items[indexPath.row].packageID ?? ""
-        dismissViewControllerAnimated(true, completion: { handleSelection?(packageID) })
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        selectedPackageID = items[indexPath.row].packageID
+        performSegueWithIdentifier("showDetail", sender: nil)
     }
+}
+
+extension TrackingHistoryViewController : PersistenceControllerAccessible { }
+
+protocol PackageDependencyInjectable {
+    func updateDetailsForPackageID(packageID: String)
 }

@@ -51,6 +51,14 @@
                BlueprintName = "PackageTrackerTests"
                ReferencedContainer = "container:PackageTracker.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "PadSplitViewControllerTests">
+               </Test>
+               <Test
+                  Identifier = "PadSplitViewControllerTests/testNumberOfViewControllersIsInitially2()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "NO">
