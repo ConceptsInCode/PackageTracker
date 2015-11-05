@@ -30,9 +30,9 @@ public struct PersistenceController {
     public let mainContext = NSManagedObjectContext(concurrencyType: .MainQueueConcurrencyType)
     private let privateContext = NSManagedObjectContext(concurrencyType: .PrivateQueueConcurrencyType)
     
-    private let callback: (Void -> Void)?
+    private let callback: (PersistenceController -> Void)?
     
-    public init(modelName: String, storeType: CoreDataStoreType = .SQLite, callback: (Void -> Void)? = nil) {
+    public init(modelName: String, storeType: CoreDataStoreType = .SQLite, callback: (PersistenceController -> Void)? = nil) {
         self.callback = callback
         
         let modelURL = NSBundle.mainBundle().URLForResource(modelName, withExtension: "momd")!
@@ -53,7 +53,7 @@ public struct PersistenceController {
             try! psc.addPersistentStoreWithType(storeType.storeTypeString, configuration: nil, URL: storeURL, options: options)
             
             dispatch_async(dispatch_get_main_queue()) {
-                callback?()
+                callback?(self)
             }
         }
     }

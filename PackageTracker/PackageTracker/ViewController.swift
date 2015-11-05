@@ -12,44 +12,41 @@ import CoreData
 
 class ViewController: UIViewController, UITableViewDataSource {
     
-    lazy var persistenceController: PersistenceController = PersistenceController(modelName: "PackageModel", storeType: .SQLite) {
-        print("persistence controller created")
-        NSNotificationCenter.defaultCenter().postNotificationName("core data stack created", object: nil)
-    }
-
 
     var items = [String]()
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var trackingTextField: UITextField!
     @IBOutlet weak var trackPackageButton: UIButton!
-    @IBOutlet weak var showHistoryButton: UIButton!
+//    @IBOutlet weak var showHistoryButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showHistoryButton.setImage(UIImage(named: "disabledClock"), forState: .Disabled)
-        showHistoryButton.enabled = false
+//        showHistoryButton?.setImage(UIImage(named: "disabledClock"), forState: .Disabled)
+//        showHistoryButton?.enabled = false
+//        
+//        let allObjects = persistenceController.fetchAll(entity: "Package")
+//        print("all objects: \(allObjects.count)")
+//        _ = persistenceController // instantiates lazy property
         
-        let allObjects = persistenceController.fetchAll(entity: "Package")
-        print("all objects: \(allObjects.count)")
+//        splitViewController?.viewControllers.
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("updateUI:"), name: "core data stack created", object: nil)
-    }
-    
-    override func viewDidDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "core data stack created", object: nil)
-    }
-
+    /*
     @IBAction func trackPackageTapped(sender: UIButton) {
         guard let text = trackingTextField.text where !text.isEmpty else { return }
         
         trackingTextField.resignFirstResponder()
         
-        let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json")!
+        guard let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json") else {
+            let mockRequestInfo = USPSRequestInfo(userID: "steve", packageID: "123")
+            USPSManager.fetchPackageResults(mockRequestInfo) { items in
+                self.items = ["There is nothing to track"]
+                self.tableView.reloadData()
+            }
+            return
+        }
         let data = NSData(contentsOfFile: filePath)!
         let json: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
         let userID = json["userID"] as! String
@@ -67,8 +64,10 @@ class ViewController: UIViewController, UITableViewDataSource {
             self.items = items
             self.tableView.reloadData()
             self.persistenceController.save()
+            self.postCoreDataReady()
         }
     }
+*/
     
     @IBAction func showHistory(sender: AnyObject?) {
         performSegueWithIdentifier("showHistorySegue", sender: nil)
@@ -100,37 +99,66 @@ class ViewController: UIViewController, UITableViewDataSource {
         return items.count
     }
     
+    /*
     func updateUI(notification: NSNotification) {
-        // all this code should go into TrackingHistoryViewController.
-        // this function should only enable the history button if allObjects.count > 0.
         
-        let packages = persistenceController.fetchAll(entity: "Package")
-        showHistoryButton.enabled = (packages.count > 0)
+//        let split = splitViewController as? PadSplitViewController
+//        split?.setPersistenceControllerForMasterViewController(persistenceController)
+        
+//        let packages = persistenceController.fetchAll(entity: "Package")
+//        showHistoryButton?.enabled = (packages.count > 0)
 
+//        postCoreDataReady()
     }
+    */
     
-    private func userIDFromJSON() -> String {
-        let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json")!
+//    private func postCoreDataReady() {
+//        NSNotificationCenter.defaultCenter().postNotificationName("CoreDataReady", object: nil)
+//    }
+    
+    private func userIDFromJSON() -> String? {
+        guard let filePath = NSBundle.mainBundle().pathForResource("USPSConfig", ofType: "json") else { return nil }
         let data = NSData(contentsOfFile: filePath)!
         let json: AnyObject = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
         let userID = json["userID"] as! String
         return userID
     }
     
+    /*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showHistorySegue", let destinationVC = segue.destinationViewController as? TrackingHistoryViewController {
             destinationVC.persistenceController = persistenceController
             destinationVC.handleSelection = { [weak self] packageID in
-                
-                let userID = self?.userIDFromJSON() ?? ""
-                let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
-                USPSManager.fetchPackageResults(requestInfo) { [weak self] items in
-                    self?.items = items
-                    self?.tableView.reloadData()
-                }
+                self?.fetchPackageInfo(packageID: packageID)
             }
         }
     }
+    */
+    
+    func fetchPackageInfo(packageID packageID: String, completion: (Void -> Void)? = nil) {
+        guard let userID = userIDFromJSON() else {
+            self.items = ["There's nothing to see here"]
+            self.tableView?.reloadData()
+            return
+        }
+        let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
+        USPSManager.fetchPackageResults(requestInfo) { [weak self] items in
+            defer { self?.tableView.reloadData() }
+            if items.isEmpty {
+                self?.items = ["There's nothing to see here"]
+            } else {
+                self?.items = items
+                completion?()
+            }
+            
+        }
+    }
 
+}
+
+extension ViewController : PackageDependencyInjectable {
+    func updateDetailsForPackageID(packageID: String, completion: Void -> Void) {
+        fetchPackageInfo(packageID: packageID, completion: completion)
+    }
 }
 

@@ -15,6 +15,9 @@
 		205AE8131AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		205AE8141AED794D00289F3F /* SampleUSPSXML.xml in Resources */ = {isa = PBXBuildFile; fileRef = 205AE8121AED794D00289F3F /* SampleUSPSXML.xml */; };
 		205EF4B81B2DF6CA0019FE77 /* USPSCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */; };
+		207D4D3E1BD67AAB006FAB09 /* PadSplitViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D4D3D1BD67AAB006FAB09 /* PadSplitViewControllerTests.swift */; settings = {ASSET_TAGS = (); }; };
+		207D4D401BD67AD5006FAB09 /* PadSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D4D3F1BD67AD5006FAB09 /* PadSplitViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		207D4D421BD67E62006FAB09 /* PersistenceControllerAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207D4D411BD67E62006FAB09 /* PersistenceControllerAccessible.swift */; settings = {ASSET_TAGS = (); }; };
 		2092AAF11B68613E005DBC46 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092AAF01B68613E005DBC46 /* PersistenceController.swift */; };
 		2092AB151B686623005DBC46 /* PackageModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2092AB131B686623005DBC46 /* PackageModel.xcdatamodeld */; };
 		2092AB201B6873F1005DBC46 /* Package+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2092AB1E1B6873F1005DBC46 /* Package+CoreDataProperties.swift */; };
@@ -51,6 +54,9 @@
 		204D48A11B21C62900E173AB /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		205AE8121AED794D00289F3F /* SampleUSPSXML.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SampleUSPSXML.xml; sourceTree = "<group>"; };
 		205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USPSCommunicator.swift; sourceTree = "<group>"; };
+		207D4D3D1BD67AAB006FAB09 /* PadSplitViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PadSplitViewControllerTests.swift; sourceTree = "<group>"; };
+		207D4D3F1BD67AD5006FAB09 /* PadSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PadSplitViewController.swift; sourceTree = "<group>"; };
+		207D4D411BD67E62006FAB09 /* PersistenceControllerAccessible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceControllerAccessible.swift; sourceTree = "<group>"; };
 		2092AAF01B68613E005DBC46 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersistenceController.swift; path = ../PersistenceController.swift; sourceTree = "<group>"; };
 		2092AB141B686623005DBC46 /* PackageModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PackageModel.xcdatamodel; sourceTree = "<group>"; };
 		2092AB1E1B6873F1005DBC46 /* Package+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Package+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 		20DE6D851AED687E00A7A73F /* PackageTracker */ = {
 			isa = PBXGroup;
 			children = (
+				207D4D3F1BD67AD5006FAB09 /* PadSplitViewController.swift */,
+				207D4D411BD67E62006FAB09 /* PersistenceControllerAccessible.swift */,
 				20C269631BA6054D0044FCA9 /* TrackingHistoryViewController.swift */,
 				2092AAF01B68613E005DBC46 /* PersistenceController.swift */,
 				205EF4B71B2DF6CA0019FE77 /* USPSCommunicator.swift */,
@@ -142,6 +150,7 @@
 		20DE6D9B1AED687E00A7A73F /* PackageTrackerTests */ = {
 			isa = PBXGroup;
 			children = (
+				207D4D3D1BD67AAB006FAB09 /* PadSplitViewControllerTests.swift */,
 				20DE6D9C1AED687E00A7A73F /* Supporting Files */,
 				55476F661AFFED4B00F9003C /* TestInfo.swift */,
 				20182FF71B1364B4002824F4 /* USPSRequestFlow.swift */,
@@ -279,9 +288,11 @@
 				2092AB201B6873F1005DBC46 /* Package+CoreDataProperties.swift in Sources */,
 				20182FFA1B1365F0002824F4 /* USPSRequestInfo.swift in Sources */,
 				55476F5E1AFFD57300F9003C /* Detail.swift in Sources */,
+				207D4D401BD67AD5006FAB09 /* PadSplitViewController.swift in Sources */,
 				55476F5B1AFFD34C00F9003C /* Summary.swift in Sources */,
 				20DE6D8B1AED687E00A7A73F /* ViewController.swift in Sources */,
 				2029545B1B3119A400F96975 /* USPSManager.swift in Sources */,
+				207D4D421BD67E62006FAB09 /* PersistenceControllerAccessible.swift in Sources */,
 				204D48A21B21C62900E173AB /* Result.swift in Sources */,
 				205EF4B81B2DF6CA0019FE77 /* USPSCommunicator.swift in Sources */,
 				20C269641BA6054D0044FCA9 /* TrackingHistoryViewController.swift in Sources */,
@@ -299,6 +310,7 @@
 			files = (
 				20C269621BA510AD0044FCA9 /* ViewControllerTests.swift in Sources */,
 				20182FF81B1364B4002824F4 /* USPSRequestFlow.swift in Sources */,
+				207D4D3E1BD67AAB006FAB09 /* PadSplitViewControllerTests.swift in Sources */,
 				20C269661BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift in Sources */,
 				55476F671AFFED4B00F9003C /* TestInfo.swift in Sources */,
 			);

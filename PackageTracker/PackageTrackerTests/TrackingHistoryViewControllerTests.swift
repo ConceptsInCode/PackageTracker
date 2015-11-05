@@ -26,17 +26,36 @@ class TrackingHistoryViewControllerTests: XCTestCase {
         XCTAssertNotNil(sut.tableView)
     }
     
+    func testTrackPackageButtonShouldBeConnected() {
+        XCTAssertNotNil(sut.trackPackageButton)
+    }
+    
+    func testTrackPackageButtonLabel() {
+        XCTAssertEqual(sut.trackPackageButton.titleLabel?.text, "Track Package")
+    }
+    
+    func testTrackPackageTextFieldShouldBeConnected() {
+        XCTAssertNotNil(sut.trackPackageTextField)
+    }
+    
     func testTableViewDelegateAndDataSourceAreConnected() {
         XCTAssertNotNil(sut.tableView.dataSource)
         XCTAssertNotNil(sut.tableView.delegate)
     }
     
-    
     func testItemsPropertyIsEmptyStringArrayAtFirst() {
         XCTAssertEqual(sut.items.count, 0)
     }
     
-    func testPersistenceControllerVariableIsNil() {
-        XCTAssertNil(sut.persistenceController)
+//    func testPersistenceControllerVariableIsNil() {
+//        XCTAssertNil(sut.persistenceController)
+//    }
+    
+    
+    // MARK: test buttons contain actions
+    func testTrackPackageButtonAction() {
+        let button = sut.trackPackageButton
+        let actions = button.actionsForTarget(sut, forControlEvent: .TouchUpInside) ?? []
+        XCTAssertTrue(actions.contains("trackPackage:"))
     }
 }
