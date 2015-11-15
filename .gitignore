@@ -8,7 +8,7 @@
 *.perspectivev3
 project.xcworkspace/
 xcuserdata/
-*.json
+# *.json
 
 # Generated files
 *.o
