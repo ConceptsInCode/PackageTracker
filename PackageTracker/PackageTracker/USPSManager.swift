@@ -10,7 +10,7 @@ import Foundation
 
 struct USPSManager: PackageManager {
     
-    static func fetchPackageResults(requestInfo: USPSRequestInfo, completionHandler: (([String]) -> Void)?) {
+    func fetchPackageResults(requestInfo: USPSRequestInfo, completionHandler: (([String]) -> Void)?) {
         
         USPSCommunicator.fetchPackageResults(requestInfo) { (data) -> Void in
             let xmlParser = NSXMLParser(data: data)

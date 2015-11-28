@@ -62,7 +62,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             return
         }
         let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
-        USPSManager.fetchPackageResults(requestInfo) { [weak self] items in
+        USPSManager().fetchPackageResults(requestInfo) { [weak self] items in
             defer { self?.tableView.reloadData() }
             if items.isEmpty {
                 self?.items = ["There's nothing to see here"]

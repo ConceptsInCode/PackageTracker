@@ -7,5 +7,5 @@
 //
 
 protocol PackageManager {
-    static func fetchPackageResults(requestInfo: USPSRequestInfo, completionHandler: (([String]) -> Void)?)
+    func fetchPackageResults(requestInfo: USPSRequestInfo, completionHandler: (([String]) -> Void)?)
 }
