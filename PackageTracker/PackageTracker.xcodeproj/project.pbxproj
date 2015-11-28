@@ -35,6 +35,7 @@
 		55476F611AFFD5ED00F9003C /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55476F601AFFD5ED00F9003C /* Info.swift */; };
 		55476F671AFFED4B00F9003C /* TestInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55476F661AFFED4B00F9003C /* TestInfo.swift */; };
 		84F91D511C0A2326005FBFCE /* PackageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F91D501C0A2326005FBFCE /* PackageManager.swift */; };
+		84F91D531C0A246B005FBFCE /* MockPackageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84F91D521C0A246B005FBFCE /* MockPackageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		55476F601AFFD5ED00F9003C /* Info.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		55476F661AFFED4B00F9003C /* TestInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestInfo.swift; sourceTree = "<group>"; };
 		84F91D501C0A2326005FBFCE /* PackageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PackageManager.swift; sourceTree = "<group>"; };
+		84F91D521C0A246B005FBFCE /* MockPackageManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockPackageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				20182FF71B1364B4002824F4 /* USPSRequestFlow.swift */,
 				20C269611BA510AD0044FCA9 /* ViewControllerTests.swift */,
 				20C269651BA60B1B0044FCA9 /* TrackingHistoryViewControllerTests.swift */,
+				84F91D521C0A246B005FBFCE /* MockPackageManager.swift */,
 			);
 			path = PackageTrackerTests;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F91D531C0A246B005FBFCE /* MockPackageManager.swift in Sources */,
 				20C269621BA510AD0044FCA9 /* ViewControllerTests.swift in Sources */,
 				20182FF81B1364B4002824F4 /* USPSRequestFlow.swift in Sources */,
 				207D4D3E1BD67AAB006FAB09 /* PadSplitViewControllerTests.swift in Sources */,
