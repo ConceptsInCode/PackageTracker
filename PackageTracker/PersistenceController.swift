@@ -113,13 +113,8 @@ public struct WorkerContext {
         }
         
         context.performBlock {
-//            var error: NSError?
-//            let didSave = self.context.save(&error)
             try! self.context.save()
             
-//            if !didSave {
-//                print("error saving worker context. code: \(error?.code ?? 0). error: \(error?.localizedDescription ?? String())")
-//            }
             completion?()
         }
     }
