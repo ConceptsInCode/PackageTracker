@@ -34,4 +34,15 @@ class ViewControllerTests: XCTestCase {
         let requestInfo = USPSRequestInfo(userID: "908SIXFI7346", packageID: "package")
         XCTAssertEqual(packageManager.lastRequestInfo, requestInfo)
     }
+
+    func test_SuccessfulFetch_DisplaysTheResults() {
+        packageManager.nextInfos = ["Departed", "Transferred", "Arrived"]
+
+        sut.fetchPackageInfo(packageID: "package")
+
+        XCTAssertEqual(sut.tableView(sut.tableView, numberOfRowsInSection: 0), 3)
+        let firstIndex = NSIndexPath(forRow: 0, inSection: 0)
+        let firstCell = sut.tableView(sut.tableView, cellForRowAtIndexPath: firstIndex)
+        XCTAssertEqual(firstCell.textLabel?.text, "Departed")
+    }
 }
