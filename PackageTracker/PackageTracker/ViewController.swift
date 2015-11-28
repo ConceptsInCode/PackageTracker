@@ -14,6 +14,8 @@ class ViewController: UIViewController, UITableViewDataSource {
 
     var items = [String]()
 
+    internal lazy var packageManager: PackageManager = { USPSManager() }()
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var trackingTextField: UITextField!
     @IBOutlet weak var trackPackageButton: UIButton!
@@ -62,7 +64,7 @@ class ViewController: UIViewController, UITableViewDataSource {
             return
         }
         let requestInfo = USPSRequestInfo(userID: userID, packageID: packageID)
-        USPSManager().fetchPackageResults(requestInfo) { [weak self] items in
+        packageManager.fetchPackageResults(requestInfo) { [weak self] items in
             defer { self?.tableView.reloadData() }
             if items.isEmpty {
                 self?.items = ["There's nothing to see here"]

@@ -13,11 +13,13 @@ class ViewControllerTests: XCTestCase {
     
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     var sut: ViewController!
+    let packageManager = MockPackageManager()
     
     override func setUp() {
         super.setUp()
 
         sut = storyboard.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
+        sut.packageManager = packageManager
         UIApplication.sharedApplication().keyWindow!.rootViewController = sut
         XCTAssertNotNil(sut.view)
     }
