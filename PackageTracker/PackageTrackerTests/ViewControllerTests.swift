@@ -27,4 +27,11 @@ class ViewControllerTests: XCTestCase {
     func testTableViewOutletIsConnected() {
         XCTAssertNotNil(sut.tableView)
     }
+
+    func test_OnLoad_FetchesPackageDetails() {
+        sut.fetchPackageInfo(packageID: "package")
+
+        let requestInfo = USPSRequestInfo(userID: "908SIXFI7346", packageID: "package")
+        XCTAssertEqual(packageManager.lastRequestInfo, requestInfo)
+    }
 }
