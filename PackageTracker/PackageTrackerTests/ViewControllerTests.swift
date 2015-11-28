@@ -19,7 +19,7 @@ class ViewControllerTests: XCTestCase {
 
         sut = storyboard.instantiateViewControllerWithIdentifier("ViewController") as! ViewController
         UIApplication.sharedApplication().keyWindow!.rootViewController = sut
-        _ = sut.view
+        XCTAssertNotNil(sut.view)
     }
     
 

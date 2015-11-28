@@ -18,7 +18,7 @@ class TrackingHistoryViewControllerTests: XCTestCase {
         super.setUp()
 
         sut = storyboard.instantiateViewControllerWithIdentifier("TrackingHistoryViewController") as! TrackingHistoryViewController
-        _ = sut.view
+        XCTAssertNotNil(sut.view)
     }
     
     
