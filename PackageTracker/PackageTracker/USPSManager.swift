@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct USPSManager {
+struct USPSManager: PackageManager {
     
     static func fetchPackageResults(requestInfo: USPSRequestInfo, completionHandler: (([String]) -> Void)?) {
         
