@@ -81,7 +81,7 @@ class USPSRequestFlow: XCTestCase {
         let request = USPSRequestInfo(userID: userID, packageID: packageID)
         let expectation = expectationWithDescription("testing getting data")
         
-        USPSManager.fetchPackageResults(request) { (items: [String]) -> Void in
+        USPSManager().fetchPackageResults(request) { (items: [String]) -> Void in
             XCTAssertGreaterThan(items.count, 0)
             expectation.fulfill()
         }

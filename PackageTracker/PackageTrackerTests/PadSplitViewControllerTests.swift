@@ -19,7 +19,7 @@ class PadSplitViewControllerTests: XCTestCase {
 
         sut = storyboard.instantiateViewControllerWithIdentifier("PadSplitViewController") as! PadSplitViewController
         UIApplication.sharedApplication().keyWindow!.rootViewController = sut
-        _ = sut.view
+        XCTAssertNotNil(sut.view)
     }
     
     // MARK: test initial state

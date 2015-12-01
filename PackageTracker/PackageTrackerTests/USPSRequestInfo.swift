@@ -30,3 +30,8 @@ struct USPSRequestInfo {
     }
     
 }
+
+extension USPSRequestInfo: Equatable { }
+func ==(lhs: USPSRequestInfo, rhs: USPSRequestInfo) -> Bool {
+    return lhs.userID == rhs.userID && lhs.packageID == rhs.packageID
+}

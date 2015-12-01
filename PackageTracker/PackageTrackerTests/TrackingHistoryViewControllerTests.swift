@@ -18,7 +18,7 @@ class TrackingHistoryViewControllerTests: XCTestCase {
         super.setUp()
 
         sut = storyboard.instantiateViewControllerWithIdentifier("TrackingHistoryViewController") as! TrackingHistoryViewController
-        _ = sut.view
+        XCTAssertNotNil(sut.view)
     }
     
     
@@ -46,11 +46,6 @@ class TrackingHistoryViewControllerTests: XCTestCase {
     func testItemsPropertyIsEmptyStringArrayAtFirst() {
         XCTAssertEqual(sut.items.count, 0)
     }
-    
-//    func testPersistenceControllerVariableIsNil() {
-//        XCTAssertNil(sut.persistenceController)
-//    }
-    
     
     // MARK: test buttons contain actions
     func testTrackPackageButtonAction() {
